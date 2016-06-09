@@ -16,7 +16,7 @@ namespace easyIcon
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new mainForm());
+            if(Update.Updated()) Application.Run(new mainForm());
         }
     }
 }

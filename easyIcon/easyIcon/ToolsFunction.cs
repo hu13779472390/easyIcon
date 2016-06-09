@@ -12,7 +12,7 @@ namespace easyIcon
 {
     public class ToolsFunction
     {
-        public string ToolsName = "easyIcon";   //工具名称
+        public static string ToolsName = "easyIcon";   //工具名称
 
         #region 网络数据的读取
 

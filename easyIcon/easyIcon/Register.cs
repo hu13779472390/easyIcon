@@ -53,6 +53,7 @@ namespace easyIcon
         {
             // 联网控制开关状态为，不需要进行注册
             bool containsSerial = mainForm.F.RegistryCotains(@"Scimence\easyIcon\Set", "Serial");
+            //mainForm.F.RegistryRemove(@"Scimence\easyIcon\Set", "Serial");
             if (!containsSerial && !needRegister()) return true;   
 
             // 优先判断本地注册表数据
@@ -79,7 +80,7 @@ namespace easyIcon
             // 获取设置数据
             if (SettingData == null)
             {
-                string url = "https://git.oschina.net/scimence/easyIcon/wikis/SettingPage";
+                string url = "https://git.oschina.net/scimence/easyIcon/raw/master/files/settingPage.txt";
                 SettingData = mainForm.F.getWebData(url);
                 if (!SettingData.Equals("")) SettingData = getNodeData(SettingData, "scimence", false);
             }
@@ -91,7 +92,7 @@ namespace easyIcon
             // 联网获取本机的注册码
             if (OnlineSerial == null)
             {
-                string url = "https://git.oschina.net/scimence/easyIcon/wikis/OnlineSerial";
+                string url = "https://git.oschina.net/scimence/easyIcon/raw/master/files/onlineSerial.txt";
                 OnlineSerial = mainForm.F.getWebData(url);
                 if (!OnlineSerial.Equals("")) OnlineSerial = getNodeData(OnlineSerial, "scimence", false);
                 if (!OnlineSerial.Equals("")) OnlineSerial = getNodeData(OnlineSerial, MachineInfo.MachineSerial(), true);
@@ -102,7 +103,7 @@ namespace easyIcon
         public static bool needRegister()
         {
             loadSettingData();  // 载入设置数据
-            string NeedToRegister = getNodeData(SettingData, "NeedToRegister", false);
+            string NeedToRegister = getNodeData(SettingData, "NeedToRegister", true);
             return !NeedToRegister.Equals("false");
 
             //string RegisterPrice = getNodeData(SettingData, "RegisterPrice", false);
@@ -114,7 +115,7 @@ namespace easyIcon
             loadSettingData();  // 载入设置数据
             try
             {
-                string RegisterPrice = getNodeData(SettingData, "RegisterPrice", false);
+                string RegisterPrice = getNodeData(SettingData, "RegisterPrice", true);
                 return Int32.Parse(RegisterPrice);
             }
             catch (Exception) { return 5; }
@@ -126,8 +127,9 @@ namespace easyIcon
             loadSettingData();  // 载入设置数据
             try
             {
-                string recommendUrl = getNodeData(SettingData, "RecommendUrl", false);
-                return toRealUrl(recommendUrl);
+                string recommendUrl = getNodeData(SettingData, "RecommendUrl", true);
+                return recommendUrl;
+                //return toRealUrl(recommendUrl);
             }
             catch (Exception) { return ""; }
         }
@@ -148,21 +150,21 @@ namespace easyIcon
             catch (Exception) { return data; }
         }
 
-        // 转化自定义格式数据串，为url
-        // "http://store.cocos.com/stuff/show/178765.html"
-        public static string toRealUrl(string urlData)
-        {
-            string url = urlData.Replace("|", "/").Replace(";", ":").Replace(",", ".");
-            return url;
-        }
+        //// 转化自定义格式数据串，为url
+        //// "http://store.cocos.com/stuff/show/178765.html"
+        //public static string toRealUrl(string urlData)
+        //{
+        //    string url = urlData.Replace("|", "/").Replace(";", ":").Replace(",", ".");
+        //    return url;
+        //}
 
-        // 转化url格式串，为自定义格式
-        // "http;||store,cocos,com|stuff|show|178765,html"
-        public static string formatUrl(string url)
-        {
-            string data = url.Replace("/", "|").Replace(":", ";").Replace(".", ",");
-            return data;
-        }
+        //// 转化url格式串，为自定义格式
+        //// "http;||store,cocos,com|stuff|show|178765,html"
+        //public static string formatUrl(string url)
+        //{
+        //    string data = url.Replace("/", "|").Replace(":", ";").Replace(".", ",");
+        //    return data;
+        //}
 
         # endregion
 

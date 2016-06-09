@@ -7,6 +7,6 @@ easyIcon源码：
 http://git.oschina.net/scimence/easyIcon
 
 easyIcon软件下载：
-http://git.oschina.net/scimence/easyIcon/attach_files
+https://git.oschina.net/scimence/easyIcon/raw/master/files/easyIcon.exe
 
 软件版权所有scimence,您可以免费使用，但请勿用于商业用途。（scimence@163.com)

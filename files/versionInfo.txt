@@ -1,0 +1,2 @@
+version(20160609)
+url(https://git.oschina.net/scimence/easyIcon/raw/master/files/easyIcon.exe)

@@ -1,0 +1,5 @@
+scimence(
+NeedToRegister(false)
+RegisterPrice(1)
+RecommendUrl(http://scimence.oschina.io/easyicon/)
+)scimence
